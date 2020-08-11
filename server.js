@@ -15,14 +15,15 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // use mongoose to connect to robo3t
+const MONGODB_URI = process.env.Atlas ||
 mongoose.connect("mongodb://localhost/workout", {
   useNewUrlParser: true,
   useFindAndModify: false
 });
 
 // routes
-app.use(require("./Develop/routes/api.js"));
-app.use(require("./Develop/routes/view.js"));
+app.use(require("./routes/api.js"));
+app.use(require("./routes/view.js"));
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
